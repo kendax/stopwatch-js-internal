@@ -34,7 +34,22 @@ function startStop() {
 
 function runStopwatch() {
   // Stop the stopwatch when it gets to 60 minutes
-    if(minutes > 59) {
+    if(minutes >= 60) {
+        clearInterval(timer);
+        timer = null;
+        minutes = 0;
+        seconds = 0;
+        centiseconds = 0;
+
+        // replace the pause icon with the play icon
+        const iconContainer = document.getElementById('startStopButton');
+        const newIcon = document.createElement('i');
+        newIcon.setAttribute("id", "icon");
+        newIcon.classList.add('fa-solid', 'fa-play', 'fa-2xl');
+        newIcon.style.color = '#0284c7';
+        const existingIcon = document.getElementById('icon');
+        iconContainer.replaceChild(newIcon, existingIcon);
+        
         return;
     }
     
